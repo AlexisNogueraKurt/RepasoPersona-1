@@ -2,23 +2,28 @@ using System;
 
 namespace RepasoPersona.Core
 {
-    public class CuentaCliente
+    public class EnteConSaldo
     {
-        public virtual double Saldo {get; private set;}
+        public virtual double saldo {get; private set;}
+        public EnteConSaldo() => saldo = 0;
+        public EnteConSaldo(double Efectivo)
+        {
+            Efectivo = saldo;
+        }
         public void Debitar(double monto)
         {
             if (monto <= 0)
                 throw new ArgumentException("El monto tiene que ser mayor a cero.");
 
-            if (monto > Saldo)
+            if (monto > saldo)
                 throw new InvalidOperationException("El monto supera al efectivo.");
-            Saldo -= monto;
+            saldo -= monto;
         }
         public void Acreditar(double monto)
         {
             if (monto <= 0)
                 throw new ArgumentException("El monto tiene que ser mayor a cero.");
-            Saldo += monto;
+            saldo += monto;
         }
         
     }
