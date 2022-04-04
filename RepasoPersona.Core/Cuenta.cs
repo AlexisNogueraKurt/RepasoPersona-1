@@ -6,6 +6,8 @@ namespace RepasoPersona.Core
     {
         public int CBU {get; set;}
         public Persona Cliente {get; set;}
+        
+        
     }
 
 }

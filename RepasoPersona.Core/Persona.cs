@@ -8,7 +8,9 @@ namespace RepasoPersona.Core
         public string Apellido { get; private set; }
         public double Efectivo { get; private set; }
         public int Dni {get; private set;}
+        public override double sumSaldo = 
         public Persona() => Efectivo = 0;
+
         public Persona(string nombre, string apellido, double efectivo)
         {
             Nombre = nombre;
