@@ -15,7 +15,7 @@ namespace RepasoPersona.Test
         {
             Assert.Equal("Juan", Pepito.Nombre);
             Assert.Equal("Gomez", Pepito.Apellido);
-            Assert.Equal(0, Pepito.Efectivo);
+            Assert.Equal(0, Pepito.Saldo);
         }
 
         [Fact]
@@ -24,7 +24,7 @@ namespace RepasoPersona.Test
             double esperado = 1000;
             Pepito.Acreditar(esperado);
             
-            Assert.Equal(esperado, Pepito.Efectivo, 3);
+            Assert.Equal(esperado, Pepito.Saldo, 3);
         }
 
         [Theory]
@@ -44,7 +44,7 @@ namespace RepasoPersona.Test
             Pepito.Acreditar(monto);
             Pepito.Debitar(debito);
 
-            Assert.Equal(monto - debito, Pepito.Efectivo, 2);
+            Assert.Equal(monto - debito, Pepito.Saldo, 2);
         }
 
         [Fact]
@@ -53,11 +53,16 @@ namespace RepasoPersona.Test
             var ex = Assert.Throws<InvalidOperationException>(() => Pepito.Debitar(1000));
             Assert.Equal("El monto supera al efectivo.", ex.Message);
         }
+
+        public Cuenta MercadoPago { get; set; } 
+        public Cuenta Paypal { get; set; }
+        
         [Fact]
-        public void AcreditarCero()
+        public double SumaCuentas()
         {
-            var ex = Assert.Throws<ArgumentException>(() => Pepito.Acreditar(0));
-            Assert.Equal("El monto tiene que ser mayor a cero.", ex.Message);
+            MercadoPago = new Cuenta(1241, 400);
+            Paypal = new Cuenta(31241, 787);
+            return Pepito.SaldoCuentas;
         }
     }
 }

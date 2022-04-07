@@ -6,9 +6,7 @@ namespace RepasoPersona.Core
 {
     public class EnteConSaldo
     {
-        public virtual double Saldo {get; set;}
-        public EnteConSaldo() => Saldo = 0;
-        
+        public virtual double Saldo { get; set; }
         public void Debitar(double monto)
         {
             if (monto <= 0)
